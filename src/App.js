@@ -5,12 +5,13 @@ function App() {
   const [ip, setIp] = useState();
   const getIP = () => {
     const url =
-      "https://geo.ipify.org/api/v2/country?apiKey=at_t9pjT5SduFKs5XgR2UHjRThw9mp9Q&ipAddress=8.8.8.8";
+      "https://geolocation-db.com/json/";
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
-        setIp(data.ip);
-      });
+        setIp(data.IPv4);
+      })
+      
   };
 console.log(ip)
   useEffect(()=>{
