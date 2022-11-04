@@ -2,16 +2,17 @@ import "./App.css";
 import { useState, useEffect } from "react";
 
 function App() {
+  const [details, setDetails]=useState();
   const [ip, setIp] = useState();
   const [country, setCountry]=useState();
+  const [city, setCity]=useState();
   const getIP = () => {
     const url =
       "https://geolocation-db.com/json/";
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
-        setIp(data.IPv4);
-        setCountry(data.country_name)
+        setDetails(data);
       })
       
   };
@@ -27,7 +28,7 @@ console.log(ip)
 //   useEffect(()=>{
 //     getLocation()
 //   }, []);
-  return <><div className="App">This is your IP: {ip} <br/> I know where you are in {country}</div>
+  return <><div className="App">This is your IP: {details.IPv4} <br/> I know where you are in {details.city}, {details.country_name}.</div>
   {/* <p>This is your location: {location}</p> */}
   </>;
 }
