@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useState, useEffect } from "react";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const [ip, setIp] = useState();
+  const getIP = () => {
+    const url =
+      "https://geo.ipify.org/api/v2/country?apiKey=at_t9pjT5SduFKs5XgR2UHjRThw9mp9Q&ipAddress=8.8.8.8";
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        setIp(data.ip);
+      });
+  };
+console.log(ip)
+  useEffect(()=>{
+    getIP()
+  }, []);
+  return <div className="App">This is your IP: {ip}</div>;
 }
 
 export default App;
